@@ -1,0 +1,272 @@
+A. LITTLE CORES (2,3)
+
+root@odroid:/home/odroid# cset shield -c 2,3
+cset: --> activating shielding:
+cset: moving 112 tasks from root into system cpuset...
+[==================================================]%
+cset: "system" cpuset of CPUSPEC(0-1,4-7) with 112 tasks running
+cset: "user" cpuset of CPUSPEC(2-3) with 0 tasks running
+
+--------------------------------------------------------------------------------------------
+1. blowfish
+odroid@odroid:~/MibenchModified/blowfish_modified$ time cset shield --exec ./runme_large.sh
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2029
+
+real    0m55.093s
+user    0m54.530s
+sys     0m0.540s
+
+
+odroid@odroid:~/MibenchModified/blowfish_modified$ time cset shield --exec ./parallel_command.py
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2037
+
+real    1m2.326s
+user    2m3.085s
+sys     0m1.320s
+
+--------------------------------------------------------------------------------------------
+2. dijkstra
+odroid@odroid:~/MibenchModified/dijkstra_modified$ time cset shield --exec ./runme_large.sh
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 1804
+
+real    0m42.542s
+user    0m34.955s
+sys     0m7.580s
+
+odroid@odroid:~/MibenchModified/dijkstra_modified$ time cset shield --exec ./parallel_command.py
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 1810
+
+real    0m48.468s
+user    1m17.685s
+sys     0m17.995s
+
+--------------------------------------------------------------------------------------------
+
+3. qsort
+odroid@odroid:~/MibenchModified/qsort_modified$ time cset shield --exec ./runme_large.sh
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2086
+
+real    0m45.352s
+user    0m27.845s
+sys     0m17.325s
+odroid@odroid:~/MibenchModified/qsort_modified$ time cset shield --exec ./parallel_command.py
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2093
+
+real    0m50.562s
+user    1m1.055s
+sys     0m39.815s
+
+--------------------------------------------------------------------------------------------
+4. sha
+odroid@odroid:~/MibenchModified/sha_modified$ time cset shield --exec ./runme_large.sh
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2173
+
+real    0m54.519s
+user    0m29.970s
+sys     0m24.525s
+odroid@odroid:~/MibenchModified/sha_modified$ time cset shield --exec ./parallel_command.py
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2182
+
+real    1m5.822s
+user    1m9.940s
+sys     1m1.510s
+
+--------------------------------------------------------------------------------------------
+5. susan
+odroid@odroid:~/MibenchModified/susan_modified$ time cset shield --exec ./runme_large.sh
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2246
+
+real    0m54.011s
+user    0m32.260s
+sys     0m21.725s
+odroid@odroid:~/MibenchModified/susan_modified$ time cset shield --exec ./parallel_command.py
+cset: **> 1 tasks are not movable, impossible to move
+cset: --> last message, executed args into cpuset "/user", new pid is: 2254
+
+real    1m2.069s
+user    1m13.160s
+sys     0m50.825s
+
+--------------------------------------------------------------------------------------------
+********************************************************************************************
+--------------------------------------------------------------------------------------------
+
+B. big.LITTLE cores (3,4)
+root@odroid:/home/odroid# cset shield -c 3,4
+cset: --> activating shielding:
+cset: moving 109 tasks from root into system cpuset...
+[==================================================]%
+cset: "system" cpuset of CPUSPEC(0-2,5-7) with 109 tasks running
+cset: "user" cpuset of CPUSPEC(3-4) with 0 tasks running
+
+--------------------------------------------------------------------------------------------
+1. blowfish
+root@odroid:/home/odroid/MibenchModified/blowfish_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1358
+
+real    0m56.558s
+user    0m54.750s
+sys     0m0.800s
+root@odroid:/home/odroid/MibenchModified/blowfish_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1367
+
+real    0m56.715s
+user    1m49.485s
+sys     0m1.140s
+
+--------------------------------------------------------------------------------------------
+2. dijkstra
+root@odroid:/home/odroid/MibenchModified/dijkstra_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1387
+
+real    1m4.363s
+user    0m55.600s
+sys     0m8.750s
+root@odroid:/home/odroid/MibenchModified/dijkstra_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1389
+
+real    1m24.319s
+user    1m9.090s
+sys     0m15.185s
+
+--------------------------------------------------------------------------------------------
+3. qsort 
+root@odroid:/home/odroid/MibenchModified/qsort_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1406
+
+real    1m5.751s
+user    0m45.360s
+sys     0m20.375s
+root@odroid:/home/odroid/MibenchModified/qsort_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1409
+
+real    1m27.414s
+user    0m53.590s
+sys     0m33.780s
+
+--------------------------------------------------------------------------------------------
+4. sha 
+root@odroid:/home/odroid/MibenchModified/sha_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1424
+
+real    1m21.766s
+user    0m49.605s
+sys     0m32.155s
+root@odroid:/home/odroid/MibenchModified/sha_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1428
+
+real    1m53.475s
+user    1m1.575s
+sys     0m51.850s
+
+--------------------------------------------------------------------------------------------
+5. susan
+root@odroid:/home/odroid/MibenchModified/susan_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1450
+
+real    1m24.628s
+user    0m54.160s
+sys     0m30.455s
+root@odroid:/home/odroid/MibenchModified/susan_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1455
+
+real    1m47.474s
+user    1m3.765s
+sys     0m43.535s
+
+--------------------------------------------------------------------------------------------
+********************************************************************************************
+--------------------------------------------------------------------------------------------
+C. big cores (4,5)
+root@odroid:/home/odroid# cset shield --c 4,5
+cset: --> activating shielding:
+cset: moving 111 tasks from root into system cpuset...
+[==================================================]%
+cset: "system" cpuset of CPUSPEC(0-3,6-7) with 111 tasks running
+cset: "user" cpuset of CPUSPEC(4-5) with 0 tasks running
+
+--------------------------------------------------------------------------------------------
+1. blowfish
+root@odroid:/home/odroid/MibenchModified/blowfish_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1361
+
+real    0m55.686s
+user    0m54.270s
+sys     0m0.495s
+root@odroid:/home/odroid/MibenchModified/blowfish_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1374
+
+real    1m2.232s
+user    2m2.385s
+sys     0m1.180s
+
+--------------------------------------------------------------------------------------------
+2. dijkstra
+root@odroid:/home/odroid/MibenchModified/dijkstra_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1390
+
+real    0m42.958s
+user    0m35.040s
+sys     0m7.905s
+root@odroid:/home/odroid/MibenchModified/dijkstra_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1392
+
+real    0m47.426s
+user    1m15.730s
+sys     0m17.965s
+
+--------------------------------------------------------------------------------------------
+3. qsort
+root@odroid:/home/odroid/MibenchModified/qsort_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1400
+
+real    0m45.145s
+user    0m28.160s
+sys     0m16.975s
+root@odroid:/home/odroid/MibenchModified/qsort_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1402
+
+real    0m50.110s
+user    0m59.350s
+sys     0m40.720s
+
+--------------------------------------------------------------------------------------------
+4. sha
+root@odroid:/home/odroid/MibenchModified/sha_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1415
+
+real    0m58.488s
+user    0m31.430s
+sys     0m27.055s
+root@odroid:/home/odroid/MibenchModified/sha_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1429
+
+real    1m4.423s
+user    1m8.575s
+sys     1m0.130s
+
+--------------------------------------------------------------------------------------------
+5. susan
+root@odroid:/home/odroid/MibenchModified/susan_modified# time cset shield --exec ./runme_large.sh
+cset: --> last message, executed args into cpuset "/user", new pid is: 1438
+
+real    0m55.419s
+user    0m32.315s
+sys     0m23.090s
+root@odroid:/home/odroid/MibenchModified/susan_modified# time cset shield --exec ./parallel_command.py
+cset: --> last message, executed args into cpuset "/user", new pid is: 1444
+
+real    1m1.249s
+user    1m13.260s
+sys     0m48.995s
+
+--------------------------------------------------------------------------------------------
